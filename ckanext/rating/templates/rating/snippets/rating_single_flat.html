@@ -27,16 +27,16 @@ package  - The package for which the rating is displayed
       <span class="star-rating-stars">
         {%- for index in range(stars|int) -%}
           {% if enable_input %}
-            <a class="fa fa-star rating-star rating-star-filled" id="star-{{index}}" href="{{ h.url_for(controller='ckanext.rating.controller:RatingController', action=action, package=package.name, rating=index+1) }}"></a>
+            <a class="fa fa-star rating-star" id="star-{{index}}" href="{{ h.url_for(controller='ckanext.rating.controller:RatingController', action=action, package=package.name, rating=index+1) }}"></a>
           {% else %}
-            <span class="fa fa-star rating-star rating-star-filled"></span>
+            <span class="fa fa-star rating-star"></span>
           {% endif %}
         {%- endfor -%}
         {%- for index in range(stars|int, 5) -%}
           {% if enable_input %}
-            <a class="fa fa-star rating-star rating-star-empty" href="{{ h.url_for(controller='ckanext.rating.controller:RatingController', action=action, package=package.name, rating=index+1) }}"></a>
+            <a class="fa fa-star-o rating-star" href="{{ h.url_for(controller='ckanext.rating.controller:RatingController', action=action, package=package.name, rating=index+1) }}"></a>
           {% else %}
-            <span class="fa fa-star rating-star rating-star-empty"></span>
+            <span class="fa fa-star-o rating-star"></span>
           {% endif %}
         {%- endfor -%}
       </span>

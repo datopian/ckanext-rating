@@ -26,7 +26,7 @@ package  - The package for which the rating belongs to
       {% else %}
       {% set url = h.url_for(controller='ckanext.rating.controller:RatingController', action=action, package=package.name, rating=index+1) %}
       {% endif %}
-      <a class="icon icon-star rating-star" id="star-{{index}}" href="{{ url }}"></a>
+      <a class="fa fa-star rating-star" id="star-{{index}}" href="{{ url }}"></a>
     {%- endfor -%}
     {%- for index in range(stars|int, 5) -%}
       {% if ckan_29_or_higher %}
@@ -34,7 +34,7 @@ package  - The package for which the rating belongs to
       {% else %}
       {% set url = h.url_for(controller='ckanext.rating.controller:RatingController', action=action, package=package.name, rating=index+1) %}
       {% endif %}
-      <a class="icon icon-star-empty rating-star" href="{{ url }}"></a>
+      <a class="fa fa-star-o  rating-star" href="{{ url }}"></a>
     {%- endfor -%}
   </span>
 </span>

@@ -12,10 +12,14 @@
       (_('Relevance'), 'score desc, metadata_modified desc'),
       (_('Name Ascending'), 'title_string asc'),
       (_('Name Descending'), 'title_string desc'),
-      (_('Rating Ascending'), 'rating asc') if h.show_rating_in_type(c.pkg_type) else (false, false),
-      (_('Rating Descending'), 'rating desc') if h.show_rating_in_type(c.pkg_type) else (false, false),
+      (_('Rating Ascending'), 'rating asc') if h.show_rating_in_type('dataset') else (false, false),
+      (_('Rating Descending'), 'rating desc') if h.show_rating_in_type('dataset') else (true, false),
       (_('Last Modified'), 'metadata_modified desc'),
-      (_('Popular'), 'views_recent desc') if g.tracking_enabled else (false, false) ]
+      (_('Popular'), 'views_recent desc') if g.tracking_enabled else (false, false),
+      (_('Draft'), 'publishing_status asc') if g.userobj.sysadmin else (false, false),
+      (_('Review Requested'), 'approval_state asc') if g.userobj.sysadmin else (false, false),
+      (_('Rejected'), 'approval_state desc') if g.userobj.sysadmin else (false, false)
+      ]
     %}
     {% snippet 'snippets/search_form.html', form_id='dataset-search-form', type='dataset', query=c.q, sorting=sorting, sorting_selected=c.sort_by_selected, count=c.page.item_count, facets=facets, show_empty=request.params, error=c.query_error, fields=c.fields %}
 {% endblock %}

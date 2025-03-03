@@ -3,6 +3,9 @@ import logging
 from ckan.common import _
 from ckan.logic import ValidationError
 from ckan.plugins import toolkit
+from ckanext.rating.model import MAX_RATING, MIN_RATING
+
+from ckan.plugins.toolkit import chained_action
 
 log = logging.getLogger(__name__)
 
@@ -41,9 +44,9 @@ def rating_package_create(context, data_dict):
             error = _('Rating must be an integer value.')
         else:
             package = model.Package.get(package_ref)
-            if rating < model.MIN_RATING or rating > model.MAX_RATING:
+            if rating < MIN_RATING or rating > MAX_RATING:
                 error = _('Rating must be between %i and %i.') \
-                    % (model.MIN_RATING, model.MAX_RATING)
+                    % (MIN_RATING, MAX_RATING)
             elif not package:
                 error = _('Not found') + ': %r' % package_ref
     if error:
